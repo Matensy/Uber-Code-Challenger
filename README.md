@@ -1,92 +1,59 @@
-# Uber-Code-Challenger
-Desafio do Uber 
+# Desafio Uber Email Sender em Java
 
-Uber Code Challenge: Email Sender
-Descrição
-Este projeto é uma implementação do desafio de código do Uber para um serviço de envio de e-mails, desenvolvido em Java utilizando o Spring Boot. O objetivo é fornecer um serviço que possa enviar e-mails utilizando AWS SES (Simple Email Service). Devido a restrições de configuração, a integração com AWS não foi concluída, mas as instruções para configurar estão incluídas abaixo.
+Este projeto é uma implementação do desafio Uber Email Sender em Java usando Spring Boot.
 
-Tecnologias Utilizadas
-Java
-Spring Boot
-Maven
-Funcionalidades
-Enviar e-mails através de um serviço RESTful.
-Configuração fácil para integração com AWS SES.
-Pré-requisitos
-Java 11 ou superior
-Maven 3.6.3 ou superior
-Conta na AWS para configurar o SES (Simple Email Service)
-Git para controle de versão
-Configuração e Execução do Projeto
-1. Clonar o repositório
-bash
-Copiar código
-git clone https://github.com/Matensy/Uber-Code-Challenger.git
-cd Uber-Code-Challenger
-2. Configurar AWS SES
-Para configurar o AWS SES, você precisa de uma conta AWS. Siga os passos abaixo para configurar:
+## Configuração da AWS
 
-Criar uma Conta AWS: Vá para AWS e crie uma conta.
-Configurar SES:
-No Console de Gerenciamento AWS, procure por "SES" e abra o serviço.
-Verifique seu e-mail no SES.
-Obtenha suas credenciais AWS (Access Key ID e Secret Access Key).
-Configurar Credenciais no Projeto:
-Crie um arquivo application.properties na pasta src/main/resources e adicione as seguintes configurações:
-properties
-Copiar código
-spring.mail.host=email-smtp.us-east-1.amazonaws.com
-spring.mail.port=587
-spring.mail.username=SEU_ACCESS_KEY_ID
-spring.mail.password=SEU_SECRET_ACCESS_KEY
-spring.mail.properties.mail.transport.protocol=smtp
-spring.mail.properties.mail.smtp.auth=true
-spring.mail.properties.mail.smtp.starttls.enable=true
-spring.mail.properties.mail.debug=true
-3. Construir o Projeto
-bash
-Copiar código
-mvn clean install
-4. Executar o Projeto
-bash
-Copiar código
-mvn spring-boot:run
-Endpoints
-Enviar E-mail
-POST /send-email
+Para utilizar o serviço de envio de e-mails da AWS, é necessário configurar suas credenciais de acesso. Siga as instruções abaixo para configurar a AWS:
 
-Request Body
-json
-Copiar código
+1. **Crie uma conta na AWS**: Acesse [Amazon Web Services](https://aws.amazon.com/pt/) e siga as instruções para criar uma conta. Se você já possui uma conta, pule para o próximo passo.
+
+2. **Acesse o Console da AWS**: Faça login no [Console de Gerenciamento da AWS](https://aws.amazon.com/pt/console/), onde você poderá gerenciar todos os serviços da AWS.
+
+3. **Obtenha suas credenciais de acesso**: Após fazer login no Console da AWS, vá para a seção "Minhas Credenciais" ou "Credenciais de Acesso" para obter suas chaves de acesso (Access Key ID e Secret Access Key).
+
+4. **Configure suas credenciais localmente**: No seu ambiente de desenvolvimento, configure as credenciais da AWS. Você pode fazer isso definindo as variáveis de ambiente `AWS_ACCESS_KEY_ID` e `AWS_SECRET_ACCESS_KEY` com suas chaves de acesso.
+
+## Como executar o projeto
+
+### Pré-requisitos
+
+- Java JDK 11 ou superior
+- Maven
+- IDE Java (opcional)
+
+### Passos
+
+1. Clone este repositório:
+
+    ```bash
+    git clone https://github.com/seu-usuario/uber-email-sender-java.git
+    ```
+
+2. Importe o projeto na sua IDE Java ou navegue até o diretório clonado e execute o seguinte comando para compilar e executar o projeto:
+
+    ```bash
+    mvn spring-boot:run
+    ```
+
+## Utilização
+
+Após executar o projeto, você pode usar o Insomnia ou qualquer outra ferramenta de teste de API REST para enviar e-mails. O endpoint para enviar e-mails será algo como `POST /api/email`.
+
+### Exemplo de Requisição (JSON)
+
+```json
 {
-  "to": "destinatario@example.com",
-  "subject": "Assunto do E-mail",
-  "body": "Corpo do e-mail"
+  "destinatario": "exemplo@example.com",
+  "assunto": "Assunto do Email",
+  "corpo": "Conteúdo do Email"
 }
-Estrutura do Projeto
-plaintext
-Copiar código
-.
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── example
-│   │   │           └── emailsender
-│   │   │               ├── EmailSenderApplication.java
-│   │   │               ├── controller
-│   │   │               │   └── EmailController.java
-│   │   │               ├── service
-│   │   │               │   └── EmailService.java
-│   │   └── resources
-│   │       └── application.properties
-└── pom.xml
-Futuras Melhorias
-Integração com outras plataformas de e-mail.
-Melhorar a documentação com exemplos de casos de uso.
-Adicionar testes unitários e de integração.
-Contribuição
-Contribuições são bem-vindas! Por favor, abra uma issue ou envie um pull request para contribuir.
+```
 
-Licença
-Este projeto está licenciado sob a MIT License.
+## Contribuindo
+
+Contribuições são bem-vindas! Para maiores detalhes, veja [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licença
+
+Este projeto é licenciado sob a [Licença MIT](LICENSE).
